@@ -31,7 +31,7 @@ func StringToInt(s string) int {
 
 // HandleContent [P2][PROBLEM][10-13-33-153][][测试 all(#1) net.port.listen port=2 0==0][O3 2017-06-06 16:46:00]
 func HandleContent(content string) string {
-	content = strings.Replace(content, "][", "\n", -1)
+	//content = strings.Replace(content, "][", "\n", -1)
 	if content[0] == '[' {
 		content = content[1:]
 	}
@@ -40,5 +40,12 @@ func HandleContent(content string) string {
 		content = content[:len(content)-1]
 	}
 
-	return content
+	content = strings.Replace(content, "][", " ", -1)
+        tmpcontent := strings.Split(content," ")
+        fmt.Println(tmpcontent)
+        wantcontent :=  "告警级别 : " + tmpcontent[0] + "\n告警状态 : " +  tmpcontent[1] + "\n主机名   : " + tmpcontent[2] + "\n告警内容 : " +   tmpcontent[4] + "\n监控项   : "  + tmpcontent[6] + "\n监控tag  : " + tmpcontent[7] + "\n监控值   : " + tmpcontent[8] + "\n告警次数 : " + tmpcontent[9] + "\n告警时间 : " + tmpcontent[10] +" "+ tmpcontent[11]
+        fmt.Println(wantcontent)
+
+	return wantcontent
+
 }
