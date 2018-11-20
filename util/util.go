@@ -40,11 +40,16 @@ func HandleContent(content string) string {
 		content = content[:len(content)-1]
 	}
 
-	content = strings.Replace(content, "][", " ", -1)
-        tmpcontent := strings.Split(content," ")
-        fmt.Println(tmpcontent)
-        wantcontent :=  "告警级别 : " + tmpcontent[0] + "\n告警状态 : " +  tmpcontent[1] + "\n主机名   : " + tmpcontent[2] + "\n告警内容 : " +   tmpcontent[4] + "\n监控项   : "  + tmpcontent[6] + "\n监控tag  : " + tmpcontent[7] + "\n监控值   : " + tmpcontent[8] + "\n告警次数 : " + tmpcontent[9] + "\n告警时间 : " + tmpcontent[10] +" "+ tmpcontent[11]
-        fmt.Println(wantcontent)
+	//content = strings.Replace(content, "][", " ", -1)
+    tmpcontent := strings.Split(content,"][")
+    fmt.Println(tmpcontent)
+    alertcontent := strings.Split(tmpcontent[4]," ")
+    fmt.Println(alertcontent)
+    alertstring := strings.Join(alertcontent[0:len(alertcontent)-4], " ")
+    timecontent := strings.Split(tmpcontent[5]," ")
+    wantcontent :=  "============falcon============" + "\n告警级别 : " + tmpcontent[0] + "\n告警状态 : " +  tmpcontent[1] + "\n主机名   : " + tmpcontent[2] + "\n告警内容 : " +  alertstring + "\n监控项   : "  + alertcontent[len(alertcontent)-3] + "\n监控tag  : " + alertcontent[len(alertcontent)-2] + "\n监控值   : " + alertcontent[len(alertcontent)-1] + "\n告警次数 : " + timecontent[0] + "\n告警时间 : " + timecontent[1] +" "+ timecontent[2]
+    fmt.Println(wantcontent)
+
 
 	return wantcontent
 

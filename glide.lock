@@ -41,9 +41,6 @@ imports:
 - name: golang.org/x/crypto
   version: e7ba82683099cae71475961448ab8f903ea77c26
   repo: https://github.com/golang/crypto
-  subpackages:
-  - acme
-  - acme/autocert
 - name: golang.org/x/sys
   version: 0b25a408a50076fbbcae6b7ac0ea5fbb0b085e79
   repo: https://github.com/golang/sys
