@@ -30,8 +30,22 @@ func StringToInt(s string) int {
 }
 
 // HandleContent [P2][PROBLEM][10-13-33-153][][测试 all(#1) net.port.listen port=2 0==0][O3 2017-06-06 16:46:00]
+// [P3][OK] 9 ss.estab e.g. prod.dba.redis.logistics-06.hz http://prod-op-falcon-comm-00.hz:8081/portal/links/ZRpddZexN
 func HandleContent(content string) string {
 	//content = strings.Replace(content, "][", "\n", -1)
+	if strings.Contains(content, "falcon.ymmoa.com") {
+        content = strings.Replace(content, "][", " ", -1)
+        content = strings.Replace(content, "[", "", -1)
+        content = strings.Replace(content, "]", "", -1)
+        tmpcontent := strings.Split(content," ")
+        alertstring := strings.Join(tmpcontent[4:len(tmpcontent)-1], " ")
+        wantcontent :=  "============falcon============" + "\n告警级别 : " + tmpcontent[0] + "\n告警状态 : " +  tmpcontent[1] + "\n聚合数量 : " + tmpcontent[2] + "\n监控项   : "  + tmpcontent[3] +"\n告警内容 : " +  alertstring + "\n聚合链接 : " + tmpcontent[len(tmpcontent)-1]
+        fmt.Println(wantcontent)
+        return wantcontent
+	}
+
+
+
 	if content[0] == '[' {
 		content = content[1:]
 	}
