@@ -39,8 +39,8 @@ func HandleContent(content string) string {
         content = strings.Replace(content, "[", "", -1)
         content = strings.Replace(content, "]", "", -1)
         tmpcontent := strings.Split(content," ")
-        alertstring := strings.Join(tmpcontent[4:len(tmpcontent)-1], " ")
-        wantcontent :=  "============falcon============" + "\n告警级别 : " + tmpcontent[0] + "\n告警状态 : " +  tmpcontent[1] + "\n聚合数量 : " + tmpcontent[2] + "\n监控项   : "  + tmpcontent[3] +"\n告警内容 : " +  alertstring + "\n聚合链接 : " + tmpcontent[len(tmpcontent)-1]
+        alertstring := strings.Join(tmpcontent[4:len(tmpcontent)-2], " ")
+        wantcontent :=  "============falcon============" + "\n告警级别 : " + tmpcontent[0] + "\n告警状态 : " +  tmpcontent[1] + "\n聚合数量 : " + tmpcontent[2] + "\n监控项   : "  + tmpcontent[3] +"\n告警内容 : " +  alertstring + "\n聚合链接 : " + tmpcontent[len(tmpcontent)-2]
         fmt.Println(wantcontent)
         return wantcontent
 	}
